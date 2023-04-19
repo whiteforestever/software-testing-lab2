@@ -11,7 +11,7 @@ import static java.math.RoundingMode.HALF_EVEN;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Cot extends LimitedIterations {
+public class  Cot extends LimitedIterations {
 
   private final Sin sin;
   private final Cos cos;
