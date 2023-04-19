@@ -6,7 +6,7 @@ import static java.math.BigDecimal.ZERO;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public abstract class LimitedIterations implements ExpandableFunction {
+public abstract class LimitedIterations implements Function {
 
   private static final int DEFAULT_MAX_ITERATIONS = 1000;
 

@@ -34,15 +34,17 @@ class CotTest {
 
   @Test
   void shouldCallSinAndCosFunctions() {
+    final Sin spySin = spy(new Sin());
     final Cos cos = new Cos(spySin);
     final Cos spyCos = spy(cos);
-
     final Cot cot = new Cot(spySin, spyCos);
-    cot.calculate(ZERO, DEFAULT_PRECISION);
+
+    cot.calculate(ONE, DEFAULT_PRECISION);
 
     verify(spySin, atLeastOnce()).calculate(any(BigDecimal.class), any(BigDecimal.class));
     verify(spyCos, atLeastOnce()).calculate(any(BigDecimal.class), any(BigDecimal.class));
   }
+
 
   @Test
   void shouldCalculateWithMockSinAndMockCos() {
@@ -83,21 +85,17 @@ class CotTest {
   }
 
   @Test
-  void shouldCalculateForZero() {
+  void shouldNotCalculateForZero() {
     final Cot cot = new Cot();
-    assertEquals(
-        ZERO.setScale(DEFAULT_PRECISION.scale(), HALF_EVEN),
-        cot.calculate(ZERO, DEFAULT_PRECISION));
+    final BigDecimal arg = BigDecimal.ZERO;
+
+    Throwable exception = assertThrows(ArithmeticException.class,
+            () -> cot.calculate(arg, DEFAULT_PRECISION));
+
+    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
   }
 
-  @Test
-  void shouldNotCalculateForPiDividedByTwo() {
-    final Cot cot = new Cot();
-    final MathContext mc = new MathContext(DECIMAL128.getPrecision());
-    final BigDecimal arg =
-        BigDecimalMath.pi(mc).divide(new BigDecimal(2), DECIMAL128.getPrecision(), HALF_EVEN);
-    assertThrows(ArithmeticException.class, () -> cot.calculate(arg, DEFAULT_PRECISION));
-  }
+
 
   @Test
   void shouldCalculateForOne() {

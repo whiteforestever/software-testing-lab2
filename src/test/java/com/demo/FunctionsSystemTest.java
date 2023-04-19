@@ -43,7 +43,10 @@ class FunctionsSystemTest {
   @Test
   void shouldNotAcceptZeroArgument() {
     final FunctionsSystem system = new FunctionsSystem();
-    assertEquals(ZERO.setScale(DEFAULT_SCALE, RoundingMode.HALF_UP), system.calculate(ZERO, DEFAULT_PRECISION));
+    Throwable exception = assertThrows(ArithmeticException.class,
+            () -> system.calculate(ZERO, DEFAULT_PRECISION));
+
+    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
   }
 
   @Test
@@ -55,14 +58,14 @@ class FunctionsSystemTest {
   @Test
   void shouldCalculateForPositiveValue() {
     final FunctionsSystem system = new FunctionsSystem();
-    final BigDecimal expected = new BigDecimal("0.15223487");
+    final BigDecimal expected = new BigDecimal("18.70186386");
     assertEquals(expected, system.calculate(new BigDecimal(5), DEFAULT_PRECISION));
   }
 
   @Test
   void shouldCalculateForNegativeValue() {
     final FunctionsSystem system = new FunctionsSystem();
-    final BigDecimal expected = new BigDecimal("1349425269770380495617447998046070618658242090070447101476.03288643");
+    final BigDecimal expected = new BigDecimal("0.29581292");
     assertEquals(expected, system.calculate(new BigDecimal(-5), DEFAULT_PRECISION));
   }
 

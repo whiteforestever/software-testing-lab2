@@ -14,7 +14,7 @@ import com.demo.trigonometric.Sin;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class FunctionsSystem implements ExpandableFunction {
+public class FunctionsSystem implements Function {
 
   private final Sin sin;
   private final Cot cot;

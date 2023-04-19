@@ -1,6 +1,6 @@
 package com.demo;
 
-import com.demo.function.ExpandableFunction;
+import com.demo.function.Function;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class CsvWriter {
 
   public static void write(
       final String filename,
-      final ExpandableFunction function,
+      final Function function,
       final BigDecimal from,
       final BigDecimal to,
       final BigDecimal step,

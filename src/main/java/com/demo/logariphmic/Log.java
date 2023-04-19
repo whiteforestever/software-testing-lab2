@@ -28,7 +28,7 @@ public class Log extends LimitedIterations {
 
   @Override
   public BigDecimal calculate(final BigDecimal x, final BigDecimal precision)
-      throws ArithmeticException {
+          throws ArithmeticException {
     checkValidity(x, precision);
 
     if (x.compareTo(ZERO) <= 0) {
@@ -36,11 +36,11 @@ public class Log extends LimitedIterations {
     }
 
     final BigDecimal result =
-        ln.calculate(x, precision)
-            .divide(
-                ln.calculate(new BigDecimal(base), precision),
-                DECIMAL128.getPrecision(),
-                HALF_EVEN);
+            ln.calculate(x, precision)
+                    .divide(
+                            ln.calculate(new BigDecimal(base), precision),
+                            DECIMAL128.getPrecision(),
+                            HALF_EVEN);
     return result.setScale(precision.scale(), HALF_EVEN);
   }
 }
