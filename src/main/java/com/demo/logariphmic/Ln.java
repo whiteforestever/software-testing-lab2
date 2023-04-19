@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-public class  Ln extends LimitedIterations {
+public class Ln extends LimitedIterations {
 
   public Ln() {
     super();
