@@ -69,6 +69,18 @@ class FunctionsSystemTest {
     assertEquals(expected, system.calculate(new BigDecimal(-5), DEFAULT_PRECISION));
   }
 
+  @Test
+  void shouldNotCalculateForZeroValue() {
+    FunctionsSystem system = new FunctionsSystem();
+
+    BigDecimal argument = BigDecimal.ZERO;
+
+    Throwable exception = assertThrows(ArithmeticException.class,
+            () -> system.calculate(argument, DEFAULT_PRECISION));
+
+    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
+  }
+
   private static Stream<Arguments> illegalPrecisions() {
     return Stream.of(
         Arguments.of(BigDecimal.valueOf(1)),

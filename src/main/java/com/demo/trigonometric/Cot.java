@@ -33,6 +33,9 @@ public class Cot extends LimitedIterations {
 
     final BigDecimal sinValue = sin.calculate(x, precision);
     final BigDecimal cosValue = cos.calculate(x, precision);
+    System.out.println(x);
+    System.out.println(sinValue);
+    System.out.println(cosValue);
 
     if (sinValue.compareTo(ZERO) == 0) {
       throw new ArithmeticException(format("Function value for argument %s doesn't exist", x));
