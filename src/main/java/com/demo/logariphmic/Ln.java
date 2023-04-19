@@ -43,19 +43,19 @@ public class Ln extends LimitedIterations {
         i++;
       } while (BigDecimal.valueOf(0.1).pow(precision.scale()).compareTo((prevValue.subtract(curValue)).abs()) < 0 && i < maxIterations);
       return curValue.add(prevValue).divide(BigDecimal.valueOf(2), RoundingMode.HALF_EVEN);
-    } else {
-      do {
-        prevValue = curValue;
-        curValue = curValue.add(
-                BigDecimal.valueOf(-1).pow(i - 1)
-                        .divide(BigDecimal.valueOf(X - 1).pow(i), precision.scale(), RoundingMode.HALF_UP)
-                        .divide(BigDecimal.valueOf(i), precision.scale(), RoundingMode.HALF_UP)
-        );
-        i++;
-      } while (BigDecimal.valueOf(0.1).pow(precision.scale()).compareTo((prevValue.subtract(curValue)).abs()) < 0 && i < maxIterations);
-
-      curValue = curValue.add(calculate(BigDecimal.valueOf(X - 1), precision));
     }
+
+    do {
+      prevValue = curValue;
+      curValue = curValue.add(
+              BigDecimal.valueOf(-1).pow(i - 1)
+                      .divide(BigDecimal.valueOf(X - 1).pow(i), precision.scale(), RoundingMode.HALF_UP)
+                      .divide(BigDecimal.valueOf(i), precision.scale(), RoundingMode.HALF_UP)
+      );
+      i++;
+    } while (BigDecimal.valueOf(0.1).pow(precision.scale()).compareTo((prevValue.subtract(curValue)).abs()) < 0 && i < maxIterations);
+
+    curValue = curValue.add(calculate(BigDecimal.valueOf(X - 1), precision));
 
     return curValue.setScale(precision.scale(), RoundingMode.HALF_EVEN);
   }

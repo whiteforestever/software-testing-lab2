@@ -43,10 +43,7 @@ class FunctionsSystemTest {
   @Test
   void shouldNotAcceptZeroArgument() {
     final FunctionsSystem system = new FunctionsSystem();
-    Throwable exception = assertThrows(ArithmeticException.class,
-            () -> system.calculate(ZERO, DEFAULT_PRECISION));
-
-    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
+    assertNull(system.calculate(ZERO, DEFAULT_PRECISION));
   }
 
   @Test
@@ -75,10 +72,7 @@ class FunctionsSystemTest {
 
     BigDecimal argument = BigDecimal.ZERO;
 
-    Throwable exception = assertThrows(ArithmeticException.class,
-            () -> system.calculate(argument, DEFAULT_PRECISION));
-
-    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
+    assertNull(system.calculate(argument, DEFAULT_PRECISION));
   }
 
   private static Stream<Arguments> illegalPrecisions() {

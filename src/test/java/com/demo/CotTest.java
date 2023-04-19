@@ -4,8 +4,7 @@ import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 import static java.math.MathContext.DECIMAL128;
 import static java.math.RoundingMode.HALF_EVEN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -89,12 +88,8 @@ class CotTest {
     final Cot cot = new Cot();
     final BigDecimal arg = BigDecimal.ZERO;
 
-    Throwable exception = assertThrows(ArithmeticException.class,
-            () -> cot.calculate(arg, DEFAULT_PRECISION));
-
-    assertEquals("Function value for argument 0 doesn't exist", exception.getMessage());
+    assertNull(cot.calculate(arg, DEFAULT_PRECISION));
   }
-
 
 
   @Test

@@ -36,11 +36,11 @@ public class FunctionsSystem implements Function {
     final MathContext mc = new MathContext(DECIMAL128.getPrecision(), HALF_EVEN);
     final BigDecimal correctedX = x.remainder(BigDecimalMath.pi(mc).multiply(new BigDecimal(2)));
     if (x.compareTo(ZERO) <= 0) {
-      return cot.calculate(correctedX, precision).setScale(precision.scale(), HALF_EVEN);
+      return cot.calculate(correctedX, precision);
     }
     if (ln.calculate(correctedX, precision).equals(ZERO)) return null;
     return log5.calculate(correctedX, precision)
-            .divide(log10.calculate(correctedX, precision), HALF_UP)
+            .divide(log10.calculate(correctedX, precision), HALF_EVEN)
             .subtract(log3.calculate(correctedX, precision))
             .subtract(ln.calculate(correctedX, precision))
             .pow(2)
